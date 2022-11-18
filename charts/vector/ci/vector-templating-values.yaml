@@ -9,7 +9,7 @@ customConfig:
     enabled: false
   sources:
     generator:
-      type: demo_logs
+      type: generator
       format: json
   sinks:
     s3:
@@ -20,5 +20,5 @@ customConfig:
         {{ print "{{kubernetes.pod_labels.app\\.kubernetes\\.io/client-id}}/%Y/%m/%d/{{kubernetes.pod_name}}/" }}
       compression: gzip
       encoding:
-        codec: json
+        codec: ndjson
       region: us-east-1

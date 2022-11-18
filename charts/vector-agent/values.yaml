@@ -145,7 +145,7 @@ env: []
   #   valueFrom:
   #     secretKeyRef:
   #       name: vector-agent
-  #       key: awsAccessKeyId
+  #       key: awsAcessKeyId
 
 # Extra arguments to pass to the `vector` container.
 args: []

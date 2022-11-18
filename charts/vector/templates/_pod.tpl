@@ -3,9 +3,6 @@ Defines the PodSpec for Vector.
 */}}
 {{- define "vector.pod" -}}
 serviceAccountName: {{ include "vector.serviceAccountName" . }}
-{{- with .Values.podHostNetwork }}
-hostNetwork: {{ . }}
-{{- end }}
 {{- with .Values.podSecurityContext }}
 securityContext:
 {{ toYaml . | indent 2 }}
@@ -15,6 +12,9 @@ priorityClassName: {{ . }}
 {{- end }}
 {{- with .Values.dnsPolicy }}
 dnsPolicy: {{ . }}
+{{- end }}
+{{- with .Values.hostNetwork }}
+hostNetwork: {{ . }}
 {{- end }}
 {{- with .Values.dnsConfig }}
 dnsConfig:
@@ -49,10 +49,8 @@ containers:
     {{- toYaml . | nindent 6 }}
 {{- end }}
     env:
-{{- if .Values.env }}
 {{- with .Values.env }}
     {{- toYaml . | nindent 6 }}
-{{- end }}
 {{- end }}
 {{- if (eq .Values.role "Agent") }}
       - name: VECTOR_SELF_NODE_NAME
@@ -71,12 +69,6 @@ containers:
         value: "/host/proc"
       - name: SYSFS_ROOT
         value: "/host/sys"
-{{- end }}
-{{- if .Values.envFrom }}
-{{- with .Values.envFrom }}
-    envFrom:
-    {{- toYaml . | nindent 6 }}
-{{- end }}
 {{- end }}
     ports:
 {{- if or .Values.containerPorts .Values.existingConfigMaps }}
@@ -125,10 +117,6 @@ containers:
     resources:
 {{- toYaml . | nindent 6 }}
 {{- end }}
-{{- with .Values.lifecycle }}
-    lifecycle:
-{{- toYaml . | nindent 6 }}
-{{- end }}
     volumeMounts:
       - name: data
         {{- if .Values.existingConfigMaps }}
@@ -156,9 +144,6 @@ containers:
 {{- with .Values.extraVolumeMounts }}
 {{- toYaml . | nindent 6 }}
 {{- end }}
-{{- with .Values.extraContainers }}
-{{ toYaml . | indent 2 }}
-{{- end }}
 terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
 {{- with .Values.nodeSelector }}
 nodeSelector:
@@ -171,10 +156,6 @@ affinity:
 {{- with .Values.tolerations }}
 tolerations:
 {{ toYaml . | indent 2 }}
-{{- end }}
-{{- with  .Values.topologySpreadConstraints }}
-topologySpreadConstraints:
-{{- toYaml . | nindent 2 }}
 {{- end }}
 volumes:
 {{- if and .Values.persistence.enabled (eq .Values.role "Aggregator") }}

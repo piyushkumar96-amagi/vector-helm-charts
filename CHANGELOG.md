@@ -3,78 +3,6 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
-## [vector-0.17.0] - 2022-11-16
-
-### Vector
-
-#### Bug Fixes
-
-- Apply various suggested changes from JetBrains markdown and proofreading inspections (#256) ([b5a1a52](https://github.com/vectordotdev/helm-charts/commit/b5a1a52c5f4fe21454c5855e09c8a09010f8250e))
-- Remove color codes in NOTES.txt (#255) ([42bf5b0](https://github.com/vectordotdev/helm-charts/commit/42bf5b0dad3f0e832838ae652583a9c6f553f7c2))
-- Update haproxy to use image.pullSecrets (#265) ([d71856d](https://github.com/vectordotdev/helm-charts/commit/d71856d83160219a131525095af7e4197645634f))
-
-#### Features
-
-- Support enable for both the normal and headless service (#257) ([9842060](https://github.com/vectordotdev/helm-charts/commit/9842060229173076b2a316fca17c9273cde660be))
-- Update Vector image to 0.24.2 (#259) ([f3ff02c](https://github.com/vectordotdev/helm-charts/commit/f3ff02c30acc257ebcad5b12617fe7c7e23a74c0))
-- Refresh chart documentation and comments (#258) ([19af990](https://github.com/vectordotdev/helm-charts/commit/19af990992bcc4cac2caeab1aa552fc5eee083ee))
-- Update Vector image to 0.25.1 ([c9d2f0e](https://github.com/vectordotdev/helm-charts/commit/c9d2f0e377676cf246fba5b0ed730d1075271729))
-
-## [vector-0.16.3] - 2022-10-11
-
-### Vector
-
-#### Bug Fixes
-
-- :bug: pod tpl ([73dddcd](https://github.com/vectordotdev/helm-charts/commit/73dddcded166d31b17f28a2a46b226cda403c8be))
-
-## [vector-0.16.2] - 2022-10-11
-
-### Ci
-
-#### Bug Fixes
-
-- Skip release if it already exists (#248) ([9435344](https://github.com/vectordotdev/helm-charts/commit/9435344a5e684b8bf0d7dfe2b14a69cfddef188f))
-
-## [vector-0.16.1] - 2022-10-04
-
-### Vector
-
-#### Bug Fixes
-
-- Fix typos in NOTES.txt (#242) ([29f99d7](https://github.com/vectordotdev/helm-charts/commit/29f99d7bdb3cea913cf43f7501c284d1b3185b78))
-- Allow both extraContainers and extraVolumeMounts (#243) ([09a18dd](https://github.com/vectordotdev/helm-charts/commit/09a18dd5b4a55fa3d195664a1e38abfce0e529d2))
-
-#### Features
-
-- :sparkles: add envFrom support (#246) ([89be2e2](https://github.com/vectordotdev/helm-charts/commit/89be2e2a77e7f11c57c829c6c49809bc3ab26eda))
-
-## [vector-0.16.0] - 2022-08-30
-
-### Vector
-
-#### Features
-
-- Add support for setting the pod hostNetwork (#213) ([8b2e73a](https://github.com/vectordotdev/helm-charts/commit/8b2e73a3ef6bd175b9602f915dbf3684d244e126))
-- Add extraContainers option for vector & haproxy pods (#230) ([0750512](https://github.com/vectordotdev/helm-charts/commit/07505124ba27f5ec5a23f9dcb5f29c07d92de475))
-- Bump to Vector 0.24.0 ([8714641](https://github.com/vectordotdev/helm-charts/commit/87146419ba801e558fd4fe0c6b563c689757cb8a))
-
-## [vector-0.15.1] - 2022-08-11
-
-### Vector
-
-#### Bug Fixes
-
-- Bump to Vector v0.23.3 (#234) ([fae2f7a](https://github.com/vectordotdev/helm-charts/commit/fae2f7a70fc749d7d917caf946b311f8ac52da35))
-
-## [vector-0.15.0] - 2022-08-10
-
-### Vector
-
-#### Features
-
-- Add lifecycle ([2dc5602](https://github.com/vectordotdev/helm-charts/commit/2dc560265d9008157ce7389f1147a21f9d1fbeef))
-
 ## [vector-0.14.0] - 2022-07-11
 
 ### Vector
@@ -183,7 +111,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 #### Bug Fixes
 
-- Update app.kubernetes.io/version to be the `image.tag` if it is set. (#179) ([782a50a](https://github.com/vectordotdev/helm-charts/commit/782a50aebf7bbd4d73ca06dccd8a704b5e561b9b))
+- Update app.kubernetes.io/version to be the image.tag if it is set. (#179) ([782a50a](https://github.com/vectordotdev/helm-charts/commit/782a50aebf7bbd4d73ca06dccd8a704b5e561b9b))
 - Fix conditionals for existingConfigMaps and haproxy.existingConfigMap (#182) ([87ca537](https://github.com/vectordotdev/helm-charts/commit/87ca537b54f9956c434ddbbd3cfcc9942d7e9c07))
   - **BREAKING**: Several templates were referencing a previously removed `existingConfig`, they've been updated to use either `existingConfigMaps` or `haproxy.existingConfigMap`
 - Use haproxy.image.tag as its version label value (#183) ([3983653](https://github.com/vectordotdev/helm-charts/commit/39836533d6f8c41c07ddb341641e0fe328537234))
@@ -338,7 +266,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 - Add support for user defined initContainers for Vector Pods (#79) ([44a2e5e](https://github.com/vectordotdev/helm-charts/commit/44a2e5ed0877a12a4906947926ea8d576174f006))
 - Update secrets.generic to take unencoded values (#84) ([5f66c18](https://github.com/vectordotdev/helm-charts/commit/5f66c1865851894df9d682ffea688f2c95662cf7))
-  - **BREAKING**: Update `secrets.generic` to take unencoded values (#84)
+  - **BREAKING**: Update secrets.generic to take unencoded values (#84)
 - Ensure good feature parity for HAProxy (#85) ([0cb3798](https://github.com/vectordotdev/helm-charts/commit/0cb379805e464f5dc3ba4180636ba05eefb935ca))
 - Update charts to Vector 0.17.2 (#89) ([de3cf26](https://github.com/vectordotdev/helm-charts/commit/de3cf2663eee09360286c15ac8bd85a7f3a0dec2))
 - Allow HPA to be used with statefulsets (#92) ([73ae867](https://github.com/vectordotdev/helm-charts/commit/73ae867c31397db64765792a87b2c67c07873919))

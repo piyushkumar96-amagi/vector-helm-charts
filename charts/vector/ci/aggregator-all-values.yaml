@@ -41,16 +41,6 @@ affinity:
           - e2e-az1
           - e2e-az2
 
-topologySpreadConstraints:
-  - labelSelector:
-      matchLabels:
-        app.kubernetes.io/name: vector
-        app.kubernetes.io/instance: vector
-        app.kubernetes.io/component: Aggregator
-    maxSkew: 1
-    topologyKey: topology.kubernetes.io/zone
-    whenUnsatisfiable: ScheduleAnyway
-
 customConfig:
   data_dir: /data
   api:
@@ -93,7 +83,7 @@ customConfig:
       key_prefix: date=%F/
       compression: gzip
       encoding:
-        codec: json
+        codec: ndjson
       region: us-east-1
     elasticsearch:
       type: elasticsearch

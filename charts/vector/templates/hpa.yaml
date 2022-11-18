@@ -1,6 +1,6 @@
 {{- if or (eq .Values.role "Aggregator") (eq .Values.role "Stateless-Aggregator") -}}
-{{- if .Values.autoscaling.enabled }}
-apiVersion: {{ template "autoscaling.apiVersion" . }}
+{{- if and .Values.autoscaling.enabled (.Capabilities.APIVersions.Has "autoscaling/v2beta2") }}
+apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "vector.fullname" . }}
@@ -37,9 +37,5 @@ spec:
     {{- with .Values.autoscaling.customMetric -}}
     {{ toYaml . | nindent 4 }}
     {{- end }}
-  {{- with .Values.autoscaling.behavior }}
-  behavior:
-  {{- toYaml . | nindent 4 }}
-  {{- end }}
 {{- end }}
 {{- end }}
